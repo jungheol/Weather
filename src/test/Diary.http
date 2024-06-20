@@ -1,5 +1,14 @@
 ###
-POST http://localhost:8080/create/diary?date=2022-05-03
+POST http://localhost:8080/create/diary?date=2022-04-05
 Content-Type: application/json
 
-일기 내용 와다다
+4월 5일 식목일 일기
+
+
+### 해당 날짜 일기 가져오기
+GET http://localhost:8080/read/diary?date=2022-05-03
+Accept: application/json
+
+### 해당 기간 일기 가져오기
+GET http://localhost:8080/read/diaries?startDate=2022-03-01&endDate=2022-05-06
+Accept: application/json

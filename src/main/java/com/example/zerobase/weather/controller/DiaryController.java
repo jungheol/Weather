@@ -1,11 +1,12 @@
 package com.example.zerobase.weather.controller;
 
+import com.example.zerobase.weather.domain.Diary;
 import com.example.zerobase.weather.service.DiaryService;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @RestController
 public class DiaryController {
@@ -21,6 +22,16 @@ public class DiaryController {
             @RequestBody String text
     ) {
         diaryService.createDiary(date, text);
+    }
 
+    @GetMapping("/read/diary")
+    List<Diary> readDiary(@RequestParam @DateTimeFormat(iso=DateTimeFormat.ISO.DATE) LocalDate date) {
+        return diaryService.readDiary(date);
+    }
+
+    @GetMapping("/read/diaries")
+    List<Diary> readDiaries(@RequestParam @DateTimeFormat(iso=DateTimeFormat.ISO.DATE) LocalDate startDate,
+                            @RequestParam @DateTimeFormat(iso=DateTimeFormat.ISO.DATE) LocalDate endDate) {
+        return diaryService.readDiaries(startDate, endDate);
     }
 }
